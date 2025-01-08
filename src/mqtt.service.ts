@@ -25,11 +25,11 @@ export class MqttService {
         const endpoint = 'atz09m2ulkwu3-ats.iot.eu-north-1.amazonaws.com';
         const cert = path.resolve(
           __dirname,
-          '../src/certs/cert.crt',
+          '../certs/cert.crt',
         );
         const key = path.resolve(
           __dirname,
-          '../src/certs/private.key',
+          '../certs/private.key',
         );
     
     
