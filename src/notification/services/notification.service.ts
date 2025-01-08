@@ -26,8 +26,10 @@ export class NotificationService {
      await  notificationDb.updateOne(objUpdated);
      return {
       id:id,
-      hasView:true,
-      creationAt:notificationDb.creationAt
+      hasView:notificationDb.hasView,
+      creationAt:notificationDb.creationAt,
+      distance:notificationDb.distance,
+      image:notificationDb.image
      }
 
     }
