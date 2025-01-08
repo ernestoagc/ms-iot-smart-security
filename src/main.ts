@@ -7,9 +7,9 @@ async function bootstrap() {
 
 
   const config = new DocumentBuilder()
-  .setTitle('Push Notification')
+  .setTitle('IOT smart security')
   .setDescription(
-    'The API details of the business solution for Push Notification Demo Application.',
+    'The API details of the business solution for management functions of smart security solution.',
   )
   .setVersion('1.0')
   .addTag('Notification')

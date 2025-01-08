@@ -44,6 +44,7 @@ export class NotificationService {
           creationAt: not.creationAt,
           hasView:not.hasView,
           distance:not.distance,
+          image:not.image
         }
       ));
 
