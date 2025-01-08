@@ -9,7 +9,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
   .setTitle('Push Notification')
   .setDescription(
-    'The API details of the business solution for the Push Notification Demo Application.',
+    'The API details of the business solution for Push Notification Demo Application.',
   )
   .setVersion('1.0')
   .addTag('Notification')
@@ -17,7 +17,6 @@ async function bootstrap() {
   .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-
   await app.listen(process.env.PORT);
 }
 
