@@ -21,32 +21,14 @@ export class MqttService {
 
     createClientConfig() : mqtt5.Mqtt5ClientConfig {
         let builder : iot.AwsIotMqtt5ClientConfigBuilder | undefined = undefined;
-    
         const endpoint = 'atz09m2ulkwu3-ats.iot.eu-north-1.amazonaws.com';
-        const cert = path.resolve(
-          __dirname,
-          '../certs/cert.crt',
-        );
-        const key = path.resolve(
-          __dirname,
-          '../certs/private.key',
-        );
-    
-    
-            builder = iot.AwsIotMqtt5ClientConfigBuilder.newDirectMqttBuilderWithMtlsFromPath(
-                endpoint,
-                cert,
-                key
-            );
-    
-    
+        const cert = path.resolve( __dirname,'../certs/cert.crt',);
+        const key = path.resolve(  __dirname,'../certs/private.key',);
+        builder = iot.AwsIotMqtt5ClientConfigBuilder.newDirectMqttBuilderWithMtlsFromPath(endpoint,cert,key);
         return builder.build();
     }
 
     createClient() : mqtt5.Mqtt5Client {
-
-   
-
         let config : mqtt5.Mqtt5ClientConfig = this.createClientConfig();
     
         console.log("Creating client for " + config.hostName);

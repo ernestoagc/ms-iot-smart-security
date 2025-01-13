@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { NotificationService } from './services/notification.service';
 import { NotificationController } from './controller/notification.controller';
-import { MongooseModule, Schema } from '@nestjs/mongoose';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AlertNotification, AlertNotificationSchema } from './entity/alert-notification.entity';
 import { HttpModule } from '@nestjs/axios';
 import { HttpHelperService } from '../common/http/http-helper.service';

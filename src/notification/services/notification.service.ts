@@ -1,11 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import * as firebase from 'firebase-admin';
 import { Model } from 'mongoose';
 import { AlertNotification } from '../entity/alert-notification.entity';
-import { SendNotificationRequest } from '../dto/send-notification.dto';
 import { SaveNotificationRequest } from '../dto/save-notification.dto';
-import {HttpHelperService} from '../../common/http/http-helper.service'
+import {HttpHelperService} from '../../common/http/http-helper.service';
 
 @Injectable()
 export class NotificationService {
@@ -73,8 +71,6 @@ export class NotificationService {
         dateSent: "1-7-2025 2:01AM"
     }
 
-    //https://app.nativenotify.com/api/notification
-    //https://run.mocky.io/v3/1a8d9c58-69a2-4781-af9c-d746543335aa
       await this.httpHelperService.post(
         "https://app.nativenotify.com/api/notification",
         objRequestNotification
@@ -96,42 +92,4 @@ export class NotificationService {
 
     }
 
-    public async sendNotification(notification:SendNotificationRequest){
-        try {
-            await firebase
-              .messaging()
-              .send({
-                notification: {
-                  title: notification.title,
-                  body: notification.body,
-                },
-                token: notification.deviceId,
-                data: {},
-                android: {
-                  priority: 'high',
-                  notification: {
-                    sound: 'default',
-                    channelId: 'default',
-                  },
-                },
-                apns: {
-                  headers: {
-                    'apns-priority': '10',
-                  },
-                  payload: {
-                    aps: {
-                      contentAvailable: true,
-                      sound: 'default',
-                    },
-                  },
-                },
-              })
-              .catch((error: any) => {
-                console.error(error);
-              });
-          } catch (error) {
-            console.log(error);
-            return error;
-          }
-    }
 }

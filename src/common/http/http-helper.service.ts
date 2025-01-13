@@ -44,17 +44,34 @@ export class HttpHelperService<T>  {
       public async post(
         url: string,
         data: T,
+        headers?: RawAxiosRequestHeaders,
         params?: any,
         timeout?: number,
       ): Promise<AxiosResponse<any>> {
         const configuration = this.buildConfiguration(
           url,
           'post',
-          this.getHeaders(),
+          headers==null?this.getHeaders():headers,
           timeout,
         );
     
         configuration.data = data;
+    
+        return this.request(configuration);
+      }
+
+      public async get(
+        url: string,
+        headers?: RawAxiosRequestHeaders,
+        params?: any,
+        timeout?: number,
+      ): Promise<AxiosResponse<any>> {
+        const configuration = this.buildConfiguration(
+          url,
+          'get',
+          headers==null?this.getHeaders():headers,
+          timeout,
+        );
     
         return this.request(configuration);
       }
@@ -66,7 +83,6 @@ export class HttpHelperService<T>  {
         let response: AxiosResponse;
         try {
           response = await firstValueFrom(this.httpService.request(configuration));
-          console.log("====>response http request");
           console.log(response.data);
         } catch (error) {
             new InternalServerErrorException(error);
